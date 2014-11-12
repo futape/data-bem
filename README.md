@@ -32,7 +32,7 @@ In den folgenden Beispielen beschreibe ich jeweils ein Module `.panel`.
             
         }
 
-Ein entsprechender HTML Code in dem dieses Module verwendet wird, sähe ähnlich dem folgenden aus.
+Ein entsprechender HTML Code in dem dieses Module verwendet wird, sähe ähnlich dem Folgenden aus.
 
     <div class="panel">
         <div class="panel__inner">
@@ -40,7 +40,7 @@ Ein entsprechender HTML Code in dem dieses Module verwendet wird, sähe ähnlich
         </div>
     </div>
 
-Möchte man nun dem Element `.panel__inner` des Blocks `.panel` den Modifier `.panel__inner--centered` hinzufügen, muss man entsprechende Klasse im HTML Code ergänzen. Der Code sähe dann wie folgt aus.
+Möchte man nun dem Element `.panel__inner` des Blocks `.panel` den Modifier `.panel__inner--centered` hinzufügen, muss man die entsprechende Klasse im HTML Code ergänzen. Der Code sähe dann wie folgt aus.
 
     <div class="panel">
         <div class="panel__inner panel__inner--centered">
@@ -48,7 +48,7 @@ Möchte man nun dem Element `.panel__inner` des Blocks `.panel` den Modifier `.p
         </div>
     </div>
 
-Die Redundanz die durch `panel__inner panel__inner--centered` erzeugt wird ist wohl nciht zu übersehen. Dies erhöht die Dateigröße der HTML Datei, welche wie oben beschrieben nciht gecacht wird, durch wiederholte Verwendung enorm.  
+Die Redundanz die durch `panel__inner panel__inner--centered` erzeugt wird ist wohl nicht zu übersehen. Dies erhöht die Dateigröße der HTML Datei, welche wie oben beschrieben nicht gecacht wird, durch wiederholte Verwendung enorm.  
 Das Problem lässt sich durch eine minimale Anpassung im CSS Code beheben.
 
     .panel__inner,
@@ -61,7 +61,7 @@ Das Problem lässt sich durch eine minimale Anpassung im CSS Code beheben.
         max-width:600px;
     }
 
-Dies ist eine verhältnismäßig geringe zusätzliche Menge an Code, die aufgrund des Browser Cachings gut in kauf genommen werden kann. Vor allem dann wenn sich dadurch der HTML auf folgendes reduzieren lässt.
+Dies ist eine verhältnismäßig geringe zusätzliche Menge an Code, die aufgrund des Browser Cachings gut in Kauf genommen werden kann. Vor allem dann wenn sich dadurch der HTML Code auf Folgendes reduzieren lässt.
 
     <div class="panel">
         <div class="panel__inner--centered">
@@ -164,8 +164,8 @@ Auch in diesem Fall könnte man dem Problem ähnlich wie bereits zuvor getan ent
     </div>
 
 Nun steht man allerdings vor einem anderen Problem.  
-Abgesehen von der Tatsache, dass man die Anordnung der Modifier nicht einfach ändern kann und z.B. anstelle von `panel__inner--centered--padded`, `panel__inner--padded--centered` schreiben könnte, ist das eigentliche Problem die imense Zunahme des Codes in der CSS Datei, die trotz des Browser Cachings nicht tolerierbar ist. Hätte ich bspw. ein anderes Beispiel genommen und es würde Sinn machen die Modifiere `.panel__inner--red`, `.panel__inner--green` und `.panel__inner--yellow` zu kombinieren, dann würde der Code ins unermesslich wachsen.  
-Die schlechte Maintenance des Codes ist übrigens kein wirkliches Problem. Diese kann unter der Verwendungs Preprocessors wiederhergestellt werden.
+Abgesehen von der Tatsache, dass man die Anordnung der Modifier nicht einfach ändern kann und z.B. anstelle von `panel__inner--centered--padded`, `panel__inner--padded--centered` schreiben könnte, ist das eigentliche Problem die imense Zunahme des Codes in der CSS Datei, die trotz des Browser Cachings nicht tolerierbar ist. Hätte ich bspw. ein anderes Beispiel genommen und es würde Sinn machen die Modifiers `.panel__inner--red`, `.panel__inner--green` und `.panel__inner--yellow` zu kombinieren, dann würde der Code ins unermesslich wachsen.  
+Die schlechte Maintenance des Codes ist übrigens kein wirkliches Problem. Diese kann unter der Verwendung eines Preprocessors sichergestellt werden.
 
 Ein Ansatz diese Problem zu lösen könnte der folgende sein.
 
@@ -195,7 +195,7 @@ Ein Ansatz diese Problem zu lösen könnte der folgende sein.
         }
 
 Dadurch nimmt der CSS Code wieder stark ab, der HTML Code könnte beibehalten werden **und** die Reihenfolge der Modifiers könnten sogar verändert werden. Trotzdem ist dies keine gute Lösung.  
-Zum einen würde bspw. der Selector `.panel__inner[class*='--yellow']` auch auf den Modifier `--yellow-color` (mit dem Selector `.panel__inner[class*='--yellow-color']` zutreffen und es würde mögliche Probleme mit der Kaskade geben.  
+Zum einen würde bspw. der Selector `.panel__inner[class*='--yellow']` auch auf den Modifier `--yellow-color` (mit dem Selector `.panel__inner[class*='--yellow-color']`) zutreffen und es würde mögliche Probleme mit der Kaskade geben.  
 Das andere Problem zeigt sich wenn man annehmen würde, dass noch ein weiteres Module `.header` existiert, welches ebenfalls einen Modifier `--centered` hat. Der HTML Code würde dann z.B. folgendermaßen aussehen.
 
     <div class="panel">
@@ -208,7 +208,7 @@ Der Selector `.panel__inner[class*='--centered']` würde auf dieses Element ansp
 
 ##Die Lösung (Ein Ansatz)
 
-Eine Lösung, die keine der oben genannten Probleme aufwirft, aber das originale Problem behebt ist folgende.
+Eine Lösung, die keine der oben genannten Probleme aufwirft, aber das anfängliche Problem behebt ist folgende.
 
 **CSS**
 
@@ -246,10 +246,10 @@ Eine Lösung, die keine der oben genannten Probleme aufwirft, aber das originale
     </div>
 
 Der HTML Code ist immernoch ziemlich kurz und die Modifiers können einfach in beliebiger Reihenfolge hinzugefügt werden.  
-Der CSS Code ist ebenfalls sehr schlank. Auch das Problem, dass sie gleichnamige Modifiers von verschiedenen Modules oder Elements in die Quere kommen ist hier nicht vorhanden, da jedes Element oder Module ein eigenes Attribut benutzt.  
-Der einzige Nachteil den ich derzeit an dieser Lösung ausmachen kann ist, dass z.B. der Selector `[data-e-panel__inner][class~='yellow']` ein klein wenig spezifischer ist als `.panel__inner--yellow`, aber eine Differenz des Scores von 1 ist wohl nicht so tragisch.
+Der CSS Code ist ebenfalls sehr schlank. Auch das Problem, dass sich gleichnamige Modifiers von verschiedenen Modules oder Elements in die Quere kommen ist hier nicht vorhanden, da jedes Element oder Module ein eigenes Attribut benutzt.  
+Der einzige Nachteil den ich derzeit an dieser Lösung ausmachen kann ist, dass z.B. der Selector `[data-bem-panel__inner][class~='yellow']` ein klein wenig spezifischer ist als `.panel__inner--yellow`, aber eine Differenz des Scores von 1 ist wohl nicht so tragisch.
 
 ##Letzte Worte
 
-Ich bitte um eine kurze Rückmeldung und um Verbesserungsvorschläge mithilfe der Kommentare.  
-Vielleicht kommt ja auch jemand auf die Idee dieses Gist in eine andere Sprache zu übersetzen. In diesem Fall bitte eine Nachricht an mich senden, sodass ich hier den Link zu der Übersetzung ergänzen kann.
+Bei Verbesserungsvorschlägen, forkt einfach diese Repo und macht einen Pull Request.  
+Vielleicht kommt ja auch jemand auf die Idee dieses Dokument in eine andere Sprache zu übersetzen. In diesem Fall bitte einen Fork erstellen, den Link zur Übersetzung in dieses Dokument einfügen und einen Pull Request senden.
