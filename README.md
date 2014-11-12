@@ -212,35 +212,35 @@ Eine Lösung, die keine der oben genannten Probleme aufwirft, aber das originale
 
 **CSS**
 
-    [data-b-panel] {
+    [data-bem-panel] {
         display:block;
     }
-        [data-e-panel__inner] {
+        [data-bem-panel__inner] {
             margin:0 auto;
             max-width:600px;
         }
-        [data-e-panel__inner][class~='centered'] {
+        [data-bem-panel__inner][class~='centered'] {
             text-align:center;
         }
-        [data-e-panel__inner][class~='padded'] {
+        [data-bem-panel__inner][class~='padded'] {
             padding:1em;
         }
-        [data-e-panel__inner][class~='red'] {
+        [data-bem-panel__inner][class~='red'] {
             background-color:red;
             color:#fff;
         }
-        [data-e-panel__inner][class~='green'] {
+        [data-bem-panel__inner][class~='green'] {
             background-color:green;
             color:#fff;
         }
-        [data-e-panel__inner][class~='yellow'] {
+        [data-bem-panel__inner][class~='yellow'] {
             background-color:yellow;
         }
 
 **HTML**
 
-    <div data-b-panel>
-        <div data-e-panel__inner="centered padded">
+    <div data-bem-panel>
+        <div data-bem-panel__inner="centered padded">
             Hello World.
         </div>
     </div>
