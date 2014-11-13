@@ -253,3 +253,7 @@ Der einzige Nachteil den ich derzeit an dieser Lösung ausmachen kann ist, dass 
 
 Bei Verbesserungsvorschlägen, forkt einfach diese Repo und macht einen Pull Request.  
 Vielleicht kommt ja auch jemand auf die Idee dieses Dokument in eine andere Sprache zu übersetzen. In diesem Fall bitte einen Fork erstellen, den Link zur Übersetzung in dieses Dokument einfügen und einen Pull Request senden.
+
+##jQuery Plugin
+
+Mit [jquery.data-bem](https://github.com/futape/jquery-data-bem) ist ein jQuery Plugin verfügbar, welches die Arbeit mit BEM Klassen und `data-bem-*` Attributen komfortabel macht.
