@@ -257,3 +257,7 @@ Vielleicht kommt ja auch jemand auf die Idee dieses Dokument in eine andere Spra
 ##jQuery Plugin
 
 Mit [jquery.data-bem](https://github.com/futape/jquery-data-bem) ist ein jQuery Plugin verfügbar, welches die Arbeit mit BEM Klassen und `data-bem-*` Attributen komfortabel macht.
+
+##Autor
+
+[Lucas Krause](http://futape.de) ([@futape](https://twitter.com/futape))
